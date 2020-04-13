@@ -43,32 +43,16 @@ class MainActivity : AppCompatActivity() {
                         recyclerMain?.adapter = postsAdapter
                     }
                     response.code() == InformationalStatusCode.Continue -> {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Please wait...",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@MainActivity, "Please wait...", Toast.LENGTH_SHORT).show()
                     }
                     response.code() == ClientErrorStatusCode.BadRequest -> {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "The request could not be delivered due to incorrect syntax.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@MainActivity, "The request could not be delivered due to incorrect syntax.", Toast.LENGTH_SHORT).show()
                     }
                     response.code() == RedirectionStatusCode.Found -> {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "The request was found.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@MainActivity, "The request was found.", Toast.LENGTH_SHORT).show()
                     }
                     response.code() == ServerErrorStatusCode.BadGateway -> {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Bad Gateway.",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                        Toast.makeText(this@MainActivity, "Bad Gateway.", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
