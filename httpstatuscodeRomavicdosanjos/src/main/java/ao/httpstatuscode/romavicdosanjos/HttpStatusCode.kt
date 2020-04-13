@@ -2,10 +2,11 @@ package ao.httpstatuscode.romavicdosanjos
 
 import ao.httpstatuscode.romavicdosanjos.enumsStatesCode.*
 
+//This class was created by: Romavic dos Anjos...!!!
 
-//This class was created by: Romavic dos Anjos KC...!!!
-
+@Deprecated("In the next version this class, there will be no more.")
 object HttpStatusCode {
+
     @JvmStatic
     fun INFORMATIONAL(informational: Informational?): Int {
         var connectionStatusInformation = 0
