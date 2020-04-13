@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/userId_row"
+        android:id="@+id/userIdRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="User ID"
@@ -14,21 +14,21 @@
         android:textStyle="bold|italic" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/id_row"
+        android:id="@+id/idRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="ID"
         android:textStyle="bold|italic" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title_row"
+        android:id="@+id/titleRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"
         android:textStyle="italic" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/body_row"
+        android:id="@+id/bodyRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Body"

@@ -13,9 +13,9 @@ import ao.httpstatuscode.romavicdosanjos.HttpStatusCode.SERVER_ERROR
 import ao.httpstatuscode.romavicdosanjos.HttpStatusCode.SUCCESSFUL
 import ao.httpstatuscode.romavicdosanjos.enumsStatesCode.*
 import ao.httpstatuscode.romavicdosanjoskc.R
-import ao.httpstatuscode.romavicdosanjoskc.network.ApiClient.apiClient
-import ao.httpstatuscode.romavicdosanjoskc.network.ApiEndPoints
-import ao.httpstatuscode.romavicdosanjoskc.network.adapters.PostsAdapter
+import ao.httpstatuscode.romavicdosanjoskc.network.api.ApiClient.apiClient
+import ao.httpstatuscode.romavicdosanjoskc.network.api.ApiEndPoints
+import ao.httpstatuscode.romavicdosanjoskc.ui.adapters.PostsAdapter
 import ao.httpstatuscode.romavicdosanjoskc.network.model.PostsModel
 import retrofit2.Call
 import retrofit2.Callback

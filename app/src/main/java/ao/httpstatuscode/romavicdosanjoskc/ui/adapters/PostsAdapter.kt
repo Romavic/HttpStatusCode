@@ -1,4 +1,4 @@
-package ao.httpstatuscode.romavicdosanjoskc.network.adapters
+package ao.httpstatuscode.romavicdosanjoskc.ui.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -12,7 +12,7 @@ import ao.httpstatuscode.romavicdosanjoskc.network.model.PostsModel
 
 class PostsAdapter(
     private val context: Context,
-    private val postsModelList: List<PostsModel>
+    private val postsList: List<PostsModel>
 ) : RecyclerView.Adapter<PostsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,20 +22,18 @@ class PostsAdapter(
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.userId_row.text = "User ID: " + postsModelList[position].userId
-        holder.id_row.text = "Id: " + postsModelList[position].id
-        holder.title_row.text = "Title Post: " + postsModelList[position].title
-        holder.body_row.text = "Description Post: " + postsModelList[position].body
+        holder.userIdHolder.text = "User ID: " + postsList[position].userId
+        holder.idHolder.text = "Id: " + postsList[position].id
+        holder.titleHolder.text = "Title Post: " + postsList[position].title
+        holder.bodyHolder.text = "Description Post: " + postsList[position].body
     }
 
-    override fun getItemCount(): Int {
-        return postsModelList.size
-    }
+    override fun getItemCount(): Int = postsList.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var userId_row: AppCompatTextView = itemView.findViewById(R.id.userId_row)
-        var id_row: AppCompatTextView = itemView.findViewById(R.id.id_row)
-        var title_row: AppCompatTextView = itemView.findViewById(R.id.title_row)
-        var body_row: AppCompatTextView = itemView.findViewById(R.id.body_row)
+        var userIdHolder: AppCompatTextView = itemView.findViewById(R.id.userIdRow)
+        var idHolder: AppCompatTextView = itemView.findViewById(R.id.idRow)
+        var titleHolder: AppCompatTextView = itemView.findViewById(R.id.titleRow)
+        var bodyHolder: AppCompatTextView = itemView.findViewById(R.id.bodyRow)
     }
 }

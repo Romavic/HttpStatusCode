@@ -1,4 +1,4 @@
-package ao.httpstatuscode.romavicdosanjoskc.network
+package ao.httpstatuscode.romavicdosanjoskc.network.api
 
 import ao.httpstatuscode.romavicdosanjoskc.network.model.PostsModel
 import retrofit2.Call
