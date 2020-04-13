@@ -6,9 +6,10 @@ This is a library that allows you to spell out the htpp status codes extensively
 ###### What to expect from this new version?
 
 1. The concept of Empathy driven development was applied to the class codes suggested by Alexandre Antonio Juca (https://github.com/AlexJuca);
-2. Better facility in calling classes' HttpStatusCode methods;
+2. Better facility in calling classes' HttpStatusCode methods:
+   - This is a script(https://dev.to/alexjuca/7-licoes-aprendidas-ao-desenvolver-bibliotecas-59n7?fbclid=IwAR2qwLQ6AetmfRP0S7wrHZnoa-5cUQ7Fhp4cLGtejH3MqoScKcRHil9aSUo) that many programmers should read when producing a library, it is in portuguese, but using GoogleTranslator it will make it a lot easier for those who do not understand the portuguese language.
 3. Classes deprecated:
-  - HttpStatusCode (the class and its methods.)
+   - HttpStatusCode (the class and its methods.)
 
 ```Groovy
 implementation 'com.github.romavic:HttpStatusCode:1.1'
