@@ -168,5 +168,3 @@ class MainActivity : AppCompatActivity() {
     }
 }
 ```
-
-@github/support https://github.com/AlexJuca
