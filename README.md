@@ -4,107 +4,105 @@ This is a library that allows you to spell out the htpp status codes extensively
 **HttpStatusCode Library**
 
 ```Groovy
-implementation 'com.github.romavic:HttpStatusCode:1.1'
+implementation 'com.github.Romavic:HttpStatusCode:1.1.1'
 ```
 
 This code was built based on this link:(https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#2xx_Success)
 
+The name class **SuccessfulStatusCode** was changed to **Successful**
 ```Kotlin
 
-object SuccessfulStatusCode {
+object Successful {
 
     @JvmStatic
-    val Ok: Int
-        get() {
-            successfulConnectionStatus = 200
-            return successfulConnectionStatus
-        }
+    val Ok: Int = 200
         
-//...and others SuccessfulStatusCode...
+//...and others Successful StatusCode...
 }
 ```
 This code was built based on this link:(https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#5xx_Server_errors)
 
+The name class **ServerErrorStatusCode** was changed to **ServerError**
+
 ```Kotlin
-object ServerErrorStatusCode {
+object ServerError {
 
     @JvmStatic
-    val InternalServerError: Int
-        get() {
-            serverErrorConnectionStatus = 500
-            return serverErrorConnectionStatus
-        }
+    val InternalServerError: Int = 500
 
-//...and others ServerErrorStatusCode...
+//...and others ServerError StatusCode...
 }
 ```
 This code was built based on this link:(https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#3xx_Redirection)
 
+The name class **RedirectionStatusCode** was changed to **Redirection**
+
 ```Kotlin
 
-object RedirectionStatusCode {
+object Redirection {
 
     @JvmStatic
-    val MultipleChoices: Int
-        get() {
-            redirectionConnectionStatus = 300
-            return redirectionConnectionStatus
-        }
+    val MultipleChoices: Int = 300
 
-//...and others RedirectionStatusCode...
+//...and others Redirection StatusCode...
 }
 ```
 This code was built based on this link:(https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#1xx_Informational_response)
 
+The name class **InformationalStatusCode** was changed to **Informational**
+
 ```Kotlin
 
-object InformationalStatusCode {
+object Informational {
 
     @JvmStatic
-    val Continue: Int
-        get() {
-            informationalConnectionStatus = 100
-            return informationalConnectionStatus
-        }
+    val Continue: Int = 100
         
-//...and others InformationalStatusCode...
+//...and others Informational StatusCode...
 }
 ```
 This code was built based on this link:(https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#4xx_Client_errors)
 
+The name class **ClientErrorStatusCode** was changed to **ClientError**
+
 ```Kotlin
 
-object ClientErrorStatusCode {
+object ClientError {
 
     @JvmStatic
-    val BadRequest: Int
-        get() {
-            clientErrorConnectionStatus = 400
-            return clientErrorConnectionStatus
-        }
+    val BadRequest: Int = 400
         
-//...and others ClientErrorStatusCode...
+//...and others ClientError StatusCode...
 }
 ```
-This example depicts the use of that bookstore (HttpStatusCode) in an application that is consuming data from an api.
+This example depicts the use of that library (HttpStatusCode) in an application that is consuming data from an api.
 Is being used to check the status codes of the requisition at Api.
 
 ```Kotlin
- when {
-                    response.code() == SuccessfulStatusCode.Ok -> {
+               when {
+                    response.code() == Successful.Ok -> {
                         postsAdapter = PostsAdapter(this@MainActivity, response.body()!!)
                         recyclerMain?.adapter = postsAdapter
+                        progressMain?.visibility = View.GONE
                     }
-                    response.code() == InformationalStatusCode.Continue -> {
+                    response.code() == Informational.Continue -> {
                         Toast.makeText(this@MainActivity, "Please wait...", Toast.LENGTH_SHORT).show()
+                        progressMain?.visibility = View.VISIBLE
                     }
-                    response.code() == ClientErrorStatusCode.BadRequest -> {
-                        Toast.makeText(this@MainActivity, "The request could not be delivered due to incorrect syntax.", Toast.LENGTH_SHORT).show()
+                    response.code() == ClientError.BadRequest -> {
+                        progressMain?.visibility = View.GONE
+                        Toast.makeText(
+                            this@MainActivity,
+                            "The request could not be delivered due to incorrect syntax.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    response.code() == RedirectionStatusCode.Found -> {
+                    response.code() == Redirection.Found -> {
+                        progressMain?.visibility = View.GONE
                         Toast.makeText(this@MainActivity, "The request was found.", Toast.LENGTH_SHORT).show()
                     }
-                    response.code() == ServerErrorStatusCode.BadGateway -> {
+                    response.code() == ServerError.BadGateway -> {
+                        progressMain?.visibility = View.GONE
                         Toast.makeText(this@MainActivity, "Bad Gateway.", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -113,16 +111,19 @@ Is being used to check the status codes of the requisition at Api.
 
 ```Kotlin
 
+
 class MainActivity : AppCompatActivity() {
 
     private var recyclerMain: RecyclerView? = null
     private var postsAdapter: PostsAdapter? = null
+    private var progressMain: ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         recyclerMain = findViewById(R.id.recyclerMain)
+        progressMain = findViewById(R.id.progressMain)
         recyclerMain?.layoutManager = LinearLayoutManager(this)
         recyclerMain?.setHasFixedSize(true)
 
@@ -135,20 +136,29 @@ class MainActivity : AppCompatActivity() {
                 response: Response<List<PostsModel>>
             ) {
                 when {
-                    response.code() == SuccessfulStatusCode.Ok -> {
+                    response.code() == Successful.Ok -> {
                         postsAdapter = PostsAdapter(this@MainActivity, response.body()!!)
                         recyclerMain?.adapter = postsAdapter
+                        progressMain?.visibility = View.GONE
                     }
-                    response.code() == InformationalStatusCode.Continue -> {
+                    response.code() == Informational.Continue -> {
                         Toast.makeText(this@MainActivity, "Please wait...", Toast.LENGTH_SHORT).show()
+                        progressMain?.visibility = View.VISIBLE
                     }
-                    response.code() == ClientErrorStatusCode.BadRequest -> {
-                        Toast.makeText(this@MainActivity, "The request could not be delivered due to incorrect syntax.", Toast.LENGTH_SHORT).show()
+                    response.code() == ClientError.BadRequest -> {
+                        progressMain?.visibility = View.GONE
+                        Toast.makeText(
+                            this@MainActivity,
+                            "The request could not be delivered due to incorrect syntax.",
+                            Toast.LENGTH_SHORT
+                        ).show()
                     }
-                    response.code() == RedirectionStatusCode.Found -> {
+                    response.code() == Redirection.Found -> {
+                        progressMain?.visibility = View.GONE
                         Toast.makeText(this@MainActivity, "The request was found.", Toast.LENGTH_SHORT).show()
                     }
-                    response.code() == ServerErrorStatusCode.BadGateway -> {
+                    response.code() == ServerError.BadGateway -> {
+                        progressMain?.visibility = View.GONE
                         Toast.makeText(this@MainActivity, "Bad Gateway.", Toast.LENGTH_SHORT).show()
                     }
                 }
@@ -156,6 +166,7 @@ class MainActivity : AppCompatActivity() {
 
             override fun onFailure(call: Call<List<PostsModel>>, t: Throwable) {
                 Log.i("Error", t.message.toString())
+                progressMain?.visibility = View.GONE
             }
         })
     }
